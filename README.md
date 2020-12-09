@@ -8,4 +8,4 @@ Clone the repo, open the project in Atmel Studio, should compile and run :)
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/CFvy-YVOXVk/0.jpg)](http://www.youtube.com/watch?v=CFvy-YVOXVk "LED Watch Demo")
 
-Note that any flickering visible on the video is not visble in person.  Additionally, the LEDs appear to be true white in person, not cool white as seen in the video.
+Note that any flickering visible on the video is not visble in person. 
