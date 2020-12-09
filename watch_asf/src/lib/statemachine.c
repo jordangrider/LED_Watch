@@ -121,15 +121,21 @@ void demoState(void) {
         case 2:
             singleLEDphysics();
             break;
-        case 3:
-            displayTimeHourMin();
-            break;
-		case 4:
+		case 3:
 		    ledWave();
 			break;
-		case 5:
+		case 4:
 			sparkle();
 			break;
+		case 5:
+            displayTimeSimple();
+            break;			
+		case 6:
+            displayTimeHourMin();
+            break;
+		case 7:
+            displayTimeAlternate_one();
+            break;				
         default:
             demoNumber = 0;
             break;

@@ -16,8 +16,8 @@ void configure_rtc(void){
 	
 	currentTime.hour = 9;
 	currentTime.pm = 0;
-	currentTime.minute = 29;
-	currentTime.second = 15;
+	currentTime.minute = 32;
+	currentTime.second = 49;
 	rtc_calendar_set_time(&rtc_object, &currentTime);
 	//rtc_calendar_get_time(&rtc_object , &currentTime);
 	getRTCTime();

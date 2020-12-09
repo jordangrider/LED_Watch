@@ -30,7 +30,7 @@ void singleLEDphysics() {
     }
 	
     //currentPosition = (uint8_t)position;
-    if(currentPosition != lastPosition) {
+    //if(currentPosition != lastPosition) {
         turnOffAllLEDS();
         //switchLED(lastPosition, true);
         uint8_t main_brightness = 30;
@@ -54,8 +54,8 @@ void singleLEDphysics() {
 				}
             }
         }
-        lastPosition = currentPosition;
-    }
+        //lastPosition = currentPosition;
+    //}
 	
 }
 
