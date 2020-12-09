@@ -15,7 +15,7 @@ void singleLEDphysics() {
     force = cos(2*M_PI*position/60.0)*accelValues.y + sin(2*M_PI*position/60.0)*accelValues.x;
 
     static float velocity = 0;
-    velocity = 0.85*velocity + force;
+    velocity = 0.95*velocity + (0.25)*force;
     float output = 100*velocity + position;
 
     position = (0.95)*position + (0.05)*output;
@@ -28,35 +28,63 @@ void singleLEDphysics() {
     if(position > currentPosition + 0.5 || position < currentPosition - 0.5) {
         currentPosition = (uint8_t)position;
     }
+	
     //currentPosition = (uint8_t)position;
     if(currentPosition != lastPosition) {
         turnOffAllLEDS();
         //switchLED(lastPosition, true);
-        switchLED(currentPosition, 10);
-        for(uint8_t i = 1; i <= (uint8_t)abs(velocity*5); i++) {
+        uint8_t main_brightness = 30;
+		uint8_t velocity_trail_length = (uint8_t)abs(velocity*20);
+		uint8_t velocity_trail_decay = main_brightness/velocity_trail_length;
+		 
+		switchLED(currentPosition, main_brightness);
+		
+        for(uint8_t i = 1; i <= velocity_trail_length; i++) {
             if(velocity > 0) {
-                switchLED(currentPosition+i, 0);
+				if(currentPosition+i >= 60){
+					switchLED(currentPosition+i-60, main_brightness - velocity_trail_decay*i);
+				} else {
+					switchLED(currentPosition+i, main_brightness - velocity_trail_decay*i);
+				}
             } else {
-                switchLED(currentPosition-i, 10);
+                if(currentPosition-i < 0){
+					switchLED(currentPosition-i+60, main_brightness - velocity_trail_decay*i);
+				} else {
+					switchLED(currentPosition-i, main_brightness - velocity_trail_decay*i);
+				}
             }
         }
         lastPosition = currentPosition;
     }
+	
 }
 
 void spinLEDs(void) {
     static uint8_t counter = 0;
     static uint8_t ledCount = 0;
     counter += 1;
-    if(counter == 10) {
-        switchLED(ledCount, 0);
+    if(counter == 2) {
+        decayLEDs(2);
         ledCount++;
         if(ledCount == 60) {
             ledCount = 0;
         }
-        switchLED(ledCount, 10);
+        switchLED(ledCount, 30);
         counter = 0;
     }
+}
+
+void sparkle(void) {
+	static uint8_t counter = 0;
+	counter += 1;
+	
+	if(counter % 2 == 0){	
+	switchLED(random()%60, 20);
+	}
+	if(counter == 5){
+	decayLEDs(1);	
+	counter = 0;
+	}
 }
 
 void ledFillEmpty(void) {
@@ -68,7 +96,7 @@ void ledFillEmpty(void) {
         static uint8_t LEDIncrement = 0;
 
         if(LEDIncrement < 60) {
-            switchLED(LEDIncrement, 10);
+            switchLED(LEDIncrement, LEDIncrement/3);
         } else {
             switchLED(120-LEDIncrement, 0);
         }

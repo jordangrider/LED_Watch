@@ -104,8 +104,8 @@ void wakeAnimation(void) {
 
 void demoState(void) {
     static enum stateStatus localState = ENTER;
-    static uint16_t timer = 1000;
-    static uint8_t demoNumber = 1;
+    static uint16_t timer = 500;
+    static uint8_t demoNumber = 0;
     switch (localState) {
     case ENTER:
         localState = ACTIVE;
@@ -122,10 +122,13 @@ void demoState(void) {
             singleLEDphysics();
             break;
         case 3:
-            displayTimeSimple();
+            displayTimeHourMin();
             break;
 		case 4:
 		    ledWave();
+			break;
+		case 5:
+			sparkle();
 			break;
         default:
             demoNumber = 0;

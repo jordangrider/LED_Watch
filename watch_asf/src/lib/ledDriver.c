@@ -13,6 +13,7 @@ void addLED(uint8_t, uint8_t);
 void turnOnAllLEDS(void);
 void ledFillEmpty(void);
 void ledHeartbeat(uint8_t);
+void decayLEDs(uint8_t decay_rate);
 
 
 const uint8_t sourcePins[] = {16,15,14,11,7,6,5,4,28,27,22,19};
@@ -164,6 +165,18 @@ void addLED(uint8_t led, uint8_t pwm){
 	}
 }
 
+void decayLEDs(uint8_t decay_rate){
+	for(uint8_t i = 0; i <= NUMBER_OF_LEDS; i++){
+		if(LEDdim[i] != 0){
+			if(LEDdim[i] > decay_rate && decay_rate != 0){
+				LEDdim[i] = LEDdim[i] - decay_rate;
+				} else {
+				LEDdim[i] = 0;
+			}
+		}
+	}
+}
+
 void turnOffAllLEDS(void){
 	for(uint8_t i = 0; i <= NUMBER_OF_LEDS; i++){
 		//turnOffLED(i);
@@ -281,6 +294,8 @@ void setLEDPinsAsOutputs(void) {
         ioport_set_pin_level(sinkPins[i], 1);
     }
 }
+
+
 
 void setLEDPinsAsInputs(void) {
     for(uint8_t i = 0; i <= sizeof(sourcePins); i++) {

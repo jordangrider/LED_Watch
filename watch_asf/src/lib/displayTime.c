@@ -26,7 +26,7 @@ void displayTimeHourMin(void){
 	uint8_t seconds = timeVal % ONEMINUTE;
 	turnOffAllLEDS();
 	
-	uint8_t hour_high = 60;
+	uint8_t hour_high = 30;
 	uint8_t hour_low = 10;
 	uint8_t minute_high = 20;
 	uint8_t second_high = 9;
