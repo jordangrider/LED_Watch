@@ -1,7 +1,7 @@
 struct rtc_calendar_config rtc_config_object;
 struct rtc_module rtc_object;
 
-#  define RTC_CLOCK_SOURCE    RTC_CLOCK_SELECTION_XOSC32K
+//#  define RTC_CLOCK_SOURCE    RTC_CLOCK_SELECTION_XOSC32K
 
 void getRTCTime(void);
 
