@@ -1,5 +1,9 @@
 # LED_Watch
 
+This is the code for an LED watch running on the SAMD21E.  By default the code will continuously run through a demo sequence.  You will have to change the state machine to get it to run in clock mode.  
+
+# Install
+
 Project files for Atmel Studio 7.0. <br>
 Clone the repo, open the project in Atmel Studio, should compile and run :)
 
